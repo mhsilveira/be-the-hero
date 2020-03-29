@@ -1,16 +1,15 @@
-const express = require("express");
-const routes = require('./routes');
-const cors = require('cors');
-const app = express();
+const express  = require("express");
+const routes   = require('./routes');
+const cors     = require('cors');
+const {errors} = require('celebrate');
+const app      = express();
 
-
-/*
-Avisando ao express que o corpo da requisição está em formato JSON
-*/ 
 app.use(cors());
 app.use(express.json());
 app.use(routes);
+app.use(errors());
 
+module.exports = app;
 
 /*
 * Métodos HTTP
@@ -34,4 +33,3 @@ app.use(routes);
  * Driver: SELECT * FROM users
  * Query Builder: table('users').select('*').where()
  */
-app.listen(3333);
